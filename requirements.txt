@@ -1,0 +1,11 @@
+autogluon.timeseries[all]
+chronos-forecasting
+huggingface-hub
+gluonts
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+pyyaml
+tqdm

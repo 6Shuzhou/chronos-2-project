@@ -1,0 +1,56 @@
+# Chronos-2 Project Configuration
+
+# Model settings
+model:
+  name: "Chronos"
+  # Chronos-2 model from HuggingFace
+  model_path: "/root/chronos-2-model"
+  # Alternative: use HuggingFace hub directly
+  # model_path: "amazon/chronos-2"
+  prediction_length: 96
+  context_length: 512
+  batch_size: 8
+  num_samples: 100
+
+# ETT Dataset settings
+dataset:
+  name: "ETTh1"
+  data_dir: "/root/datasets/ett-dataset"
+  available_datasets:
+    - "ETTh1"
+    - "ETTh2"
+    - "ETTm1"
+    - "ETTm2"
+  target_column: "OT"  # Oil Temperature target
+  freq: "H"  # Hourly for ETTh, "15min" for ETTm
+  split_ratio:
+    train: 0.6
+    val: 0.2
+    test: 0.2
+
+# Training settings (Fine-tuning / Transfer Learning)
+training:
+  fine_tune: true
+  epochs: 20
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  early_stopping_patience: 5
+  val_check_interval: 1.0
+  gradient_clip_val: 1.0
+  
+# Evaluation settings
+evaluation:
+  metrics:
+    - "MASE"
+    - "MAPE"
+    - "sMAPE"
+    - "RMSE"
+    - "MAE"
+  num_samples: 100
+
+# Output paths
+output:
+  model_dir: "/root/chronos-2-project/models"
+  results_dir: "/root/chronos-2-project/results"
+  logs_dir: "/root/chronos-2-project/logs"
+  plots_dir: "/root/chronos-2-project/results/plots"
